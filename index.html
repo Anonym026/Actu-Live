@@ -3,48 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live-Actu</title>
+    <title>Live-Actu - Accueil</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Live-Actu</h1>
+        <div class="container">
+            <h1>Live-Actu</h1>
+            <nav>
+                <a href="index.html">Accueil</a>
+                <a href="news.html">Actualités</a>
+                <a href="about.html">À propos</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
     </header>
     <main>
-        <section id="news-container">
-            <!-- Les actualités seront affichées ici -->
+        <section class="hero">
+            <h2>Bienvenue sur Live-Actu</h2>
+            <p>Les dernières actualités du monde entier</p>
+        </section>
+        <section class="features">
+            <div class="container">
+                <div class="feature">
+                    <h3>Actualités en Temps Réel</h3>
+                    <p>Recevez les dernières nouvelles directement de Reddit.</p>
+                </div>
+                <div class="feature">
+                    <h3>Interface Moderne</h3>
+                    <p>Un design épuré et facile à utiliser.</p>
+                </div>
+                <div class="feature">
+                    <h3>Contenu Diversifié</h3>
+                    <p>Explorez des articles sur une variété de sujets.</p>
+                </div>
+            </div>
         </section>
     </main>
-    <script>
-        // Fonction pour charger les actualités depuis le fichier JSON
-        function loadNews() {
-            fetch('actualites.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const container = document.getElementById('news-container');
-                    data.forEach(article => {
-                        const articleElement = document.createElement('div');
-                        articleElement.className = 'article';
-                        articleElement.innerHTML = `
-                            <h2>${article.title}</h2>
-                            <p>${article.content}</p>
-                            <a href="${article.url}" target="_blank">Lire plus</a>
-                        `;
-                        container.appendChild(articleElement);
-                    });
-                })
-                .catch(error => {
-                    console.error('Erreur lors du chargement des données:', error);
-                });
-        }
-
-        // Charger les actualités lorsque la page est chargée
-        window.onload = loadNews;
-    </script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Live-Actu. Tous droits réservés.</p>
+        </div>
+    </footer>
 </body>
 </html>

@@ -1,47 +1,89 @@
+/* Général */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header nav {
+    text-align: right;
+}
+
+header nav a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+    background: #f4f4f4;
+    padding: 50px 0;
     text-align: center;
 }
 
-header {
-    background-color: #4CAF50;
-    color: white;
+.hero h2 {
+    margin: 0;
+}
+
+.hero p {
+    font-size: 1.2em;
+}
+
+/* Features Section */
+.features {
+    padding: 50px 0;
+}
+
+.feature {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.feature h3 {
+    margin: 0;
+}
+
+/* News Section */
+.news {
     padding: 20px 0;
 }
 
-#news-container {
-    margin: 20px;
+.article {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
 }
 
-.news-item {
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+.article h2 {
+    margin: 0 0 10px 0;
 }
 
-.news-item:hover {
-    transform: scale(1.02);
-}
-
-.news-item h2 {
-    margin: 0 0 10px;
-    font-size: 1.5em;
-}
-
-.news-item p {
-    margin: 5px 0;
-    font-size: 0.9em;
-    color: #555;
-}
-
-.news-item a {
-    color: #4CAF50;
+.article a {
+    color: #007bff;
     text-decoration: none;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
 }
