@@ -1,25 +1,18 @@
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Afficher l'animation de chargement
-    const loadingElement = document.getElementById('loading');
-    const actuListElement = document.getElementById('actu-list');
-
+document.addEventListener("DOMContentLoaded", () => {
     fetch('actualites.json')
         .then(response => response.json())
         .then(data => {
-            // Masquer l'animation de chargement
-            loadingElement.style.display = 'none';
-
-            // Afficher les actualités
-            data.forEach(actu => {
-                const listItem = document.createElement('li');
-                listItem.textContent = actu;
-                actuListElement.appendChild(listItem);
+            const newsContainer = document.getElementById('news-container');
+            data.forEach(news => {
+                const newsElement = document.createElement('div');
+                newsElement.className = 'news-item';
+                newsElement.innerHTML = `
+                    <h2>${news.title}</h2>
+                    <p><a href="${news.url}" target="_blank">Lire plus</a></p>
+                    <p>Score: ${news.score} | Créé le: ${new Date(news.created * 1000).toLocaleDateString()}</p>
+                `;
+                newsContainer.appendChild(newsElement);
             });
         })
-        .catch(error => {
-            // En cas d'erreur
-            loadingElement.textContent = 'Erreur lors du chargement des actualités.';
-            console.error('Erreur:', error);
-        });
+        .catch(error => console.error('Erreur:', error));
 });

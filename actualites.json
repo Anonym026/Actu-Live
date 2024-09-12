@@ -1,8 +1,32 @@
-
 [
-    "Nouveau gadget révolutionnaire : découvrez le dernier modèle de smartphone - https://example.com/smartphone",
-    "Actualité majeure : les résultats des élections sont enfin connus - https://example.com/elections",
-    "Innovation en médecine : une nouvelle avancée dans le traitement du cancer - https://example.com/medecine",
-    "Économie : les prévisions pour l'année à venir et ce que cela signifie pour vous - https://example.com/economie",
-    "Culture : la sortie très attendue du nouveau film d'un réalisateur célèbre - https://example.com/film"
+    {
+        "title": "Joe Biden elected president of the United States",
+        "url": "https://apnews.com/article/election-2020-joe-biden-north-america-national-elections-elections-7200c2d4901d8e47f1302954685a737f",
+        "score": 365126,
+        "created": 1604766517.0
+    },
+    {
+        "title": "Chauvin found guilty of murder, manslaughter in George Floyd's death",
+        "url": "https://kstp.com/news/former-minneapolis-police-officer-derek-chauvin-found-guilty-of-murder-manslaughter-in-george-floyd-death/6081181/?cat=1",
+        "score": 250275,
+        "created": 1618952864.0
+    },
+    {
+        "title": "President Donald Trump says he has tested positive for coronavirus",
+        "url": "https://www.cnbc.com/2020/10/02/president-donald-trump-says-he-has-tested-positive-for-coronavirus.html",
+        "score": 233319,
+        "created": 1601615057.0
+    },
+    {
+        "title": "Blizzard Employees Staged a Walkout After the Company Banned a Gamer for Pro-Hong Kong Views",
+        "url": "https://www.thedailybeast.com/blizzard-employees-staged-a-walkout-to-protest-banned-pro-hong-kong-gamer",
+        "score": 226323,
+        "created": 1570653917.0
+    },
+    {
+        "title": "Trump has left the White House for the last time as President",
+        "url": "https://edition.cnn.com/politics/live-news/biden-harris-inauguration-day-2021/h_3a1320a33c4bca4445d129010660144c",
+        "score": 222629,
+        "created": 1611148604.0
+    }
 ]
