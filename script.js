@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             const posts = data.data.children;
+            actualitesSection.innerHTML = ''; // Effacer les anciennes actualités
             posts.forEach(post => {
                 const article = document.createElement('article');
                 article.innerHTML = `
