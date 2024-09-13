@@ -1,113 +1,39 @@
-/* Styles pour Live-Actu */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #4e73df, #1cc88a);
-    color: #fff;
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
 }
 
-h1 {
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-nav ul li a {
+nav a {
     color: #fff;
     text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
+    margin: 0 15px;
 }
 
-nav ul li a:hover {
-    color: #ffcc00;
+main {
+    padding: 20px;
 }
 
 section {
-    padding: 80px 20px;
-    margin-top: 80px;
+    margin: 20px 0;
 }
 
-h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    text-align: center;
-    animation: fadeInUp 1s ease-in-out;
+article {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
 }
 
-.news-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-.news-item {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-}
-
-.news-item:hover {
-    transform: translateY(-10px);
-}
-
-.news-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.news-item a {
-    color: #ffcc00;
+article h3 a {
+    color: #333;
     text-decoration: none;
-    transition: color 0.3s ease;
 }
 
-.news-item a:hover {
-    color: #fff;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+article h3 a:hover {
+    text-decoration: underline;
 }

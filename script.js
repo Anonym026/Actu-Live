@@ -1,21 +1,38 @@
-document.addEventListener("DOMContentLoaded", function() {
-    fetch('actualites.json')
-        .then(response => response.json())
-        .then(data => {
-            const newsContainer = document.getElementById('news-container');
-            newsContainer.innerHTML = ''; // Clear existing content
+const API_URL = 'https://www.reddit.com/r/';
+const SUBREDDITS = {
+    clashRoyale: 'ClashRoyale/top.json',
+    roblox: 'roblox/top.json',
+    fortnite: 'FortniteBR/top.json'
+};
 
-            data.forEach(article => {
-                const articleElement = document.createElement('div');
-                articleElement.classList.add('news-article');
-                articleElement.innerHTML = `
-                    <h2>${article.title}</h2>
-                    <a href="${article.url}" target="_blank">Lire plus</a>
-                    <p>Score: ${article.score}</p>
-                    <p>Date: ${new Date(article.created * 1000).toLocaleDateString()}</p>
-                `;
-                newsContainer.appendChild(articleElement);
-            });
-        })
-        .catch(error => console.error('Error fetching the news:', error));
+async function fetchNews(subreddit, elementId) {
+    try {
+        const response = await fetch(`${API_URL}${subreddit}`);
+        const data = await response.json();
+        const posts = data.data.children;
+
+        const container = document.getElementById(elementId);
+        container.innerHTML = '';
+
+        posts.forEach(post => {
+            const title = post.data.title;
+            const url = `https://reddit.com${post.data.permalink}`;
+            const score = post.data.score;
+
+            container.innerHTML += `
+                <article>
+                    <h3><a href="${url}" target="_blank">${title}</a></h3>
+                    <p>Score: ${score}</p>
+                </article>
+            `;
+        });
+    } catch (error) {
+        console.error('Error fetching news:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchNews(SUBREDDITS.clashRoyale, 'clash-royale-news');
+    fetchNews(SUBREDDITS.roblox, 'roblox-news');
+    fetchNews(SUBREDDITS.fortnite, 'fortnite-news');
 });
