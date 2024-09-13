@@ -1,14 +1,81 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fortnite - Live-Actu</title>
+    <title>Fortnite News - Live-Actu</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            color: #333;
+        }
+        header {
+            background: linear-gradient(to right, #ff6f00, #ff3d00);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        main {
+            padding: 20px;
+        }
+        #actualites {
+            margin-top: 20px;
+        }
+        #actualites article {
+            background: #fff;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        #actualites article img {
+            width: 100px;
+            height: auto;
+            float: left;
+            margin-right: 15px;
+        }
+        #actualites article h2 a {
+            color: #ff6f00;
+            text-decoration: none;
+        }
+        #actualites article h2 a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
 </head>
 <body>
     <header>
+        <h1>Live-Actu: Fortnite News</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Accueil</a></li>
@@ -17,15 +84,48 @@
                 <li><a href="fortnite.html">Fortnite</a></li>
             </ul>
         </nav>
-        <h1>Actualités Fortnite</h1>
     </header>
+
     <main>
         <section id="actualites">
-            <!-- Les actualités seront insérées ici via JavaScript -->
+            <h2>Actualités Fortnite</h2>
         </section>
     </main>
+
     <footer>
         <p>&copy; 2024 Live-Actu. Tous droits réservés.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const subreddit = 'Fortnite'; // Définir Fortnite comme subreddit par défaut
+
+            const apiUrl = `https://www.reddit.com/r/${subreddit}.json`; // URL de l'API Reddit
+            const actualitesSection = document.getElementById('actualites');
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const posts = data.data.children;
+                    posts.forEach(post => {
+                        const article = document.createElement('article');
+                        article.innerHTML = `
+                            <img src="${post.data.thumbnail}" alt="${post.data.title}" onerror="this.style.display='none'">
+                            <div>
+                                <h2><a href="${post.data.url}" target="_blank">${post.data.title}</a></h2>
+                                <p>Score: ${post.data.score}</p>
+                                <p>Date de publication: ${new Date(post.data.created_utc * 1000).toLocaleDateString()}</p>
+                            </div>
+                        `;
+                        actualitesSection.appendChild(article);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erreur lors de la récupération des actualités:', error);
+                    actualitesSection.innerHTML = '<p>Impossible de charger les actualités. Veuillez réessayer plus tard.</p>';
+                });
+        });
+    </script>
 </body>
 </html>

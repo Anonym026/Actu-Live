@@ -5,27 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clash Royale - Live-Actu</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
+        <h1>Clash Royale Actualités</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Accueil</a></li>
-                <li><a href="clash-royale.html">Clash Royale</a></li>
                 <li><a href="roblox.html">Roblox</a></li>
                 <li><a href="fortnite.html">Fortnite</a></li>
             </ul>
         </nav>
-        <h1>Actualités Clash Royale</h1>
     </header>
     <main>
         <section id="actualites">
-            <!-- Les actualités seront insérées ici via JavaScript -->
+            <!-- Actualités seront chargées ici -->
         </section>
     </main>
     <footer>
         <p>&copy; 2024 Live-Actu. Tous droits réservés.</p>
     </footer>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiUrl = 'https://www.reddit.com/r/ClashRoyale.json'; 
+            const actualitesSection = document.getElementById('actualites');
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const posts = data.data.children;
+                    posts.forEach(post => {
+                        const article = document.createElement('article');
+                        article.innerHTML = `
+                            <img src="${post.data.thumbnail}" alt="${post.data.title}" onerror="this.style.display='none'">
+                            <div>
+                                <h2><a href="${post.data.url}" target="_blank">${post.data.title}</a></h2>
+                                <p>Score: ${post.data.score}</p>
+                                <p>Date de publication: ${new Date(post.data.created_utc * 1000).toLocaleDateString()}</p>
+                            </div>
+                        `;
+                        actualitesSection.appendChild(article);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erreur lors de la récupération des actualités:', error);
+                    actualitesSection.innerHTML = '<p>Impossible de charger les actualités. Veuillez réessayer plus tard.</p>';
+                });
+        });
+    </script>
 </body>
 </html>
