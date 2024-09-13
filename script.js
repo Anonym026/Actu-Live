@@ -9,9 +9,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 const articleElement = document.createElement('div');
                 articleElement.classList.add('news-article');
                 articleElement.innerHTML = `
-                    <h2><a href="${article.url}" target="_blank">${article.title}</a></h2>
+                    <h2>${article.title}</h2>
+                    <a href="${article.url}" target="_blank">Lire plus</a>
                     <p>Score: ${article.score}</p>
-                    <p>Created: ${new Date(article.created * 1000).toLocaleDateString()}</p>
+                    <p>Date: ${new Date(article.created * 1000).toLocaleDateString()}</p>
                 `;
                 newsContainer.appendChild(articleElement);
             });
