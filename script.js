@@ -1,38 +1,29 @@
-const API_URL = 'https://www.reddit.com/r/';
-const SUBREDDITS = {
-    clashRoyale: 'ClashRoyale/top.json',
-    roblox: 'roblox/top.json',
-    fortnite: 'FortniteBR/top.json'
-};
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const subreddit = urlParams.get('subreddit') || 'ClashRoyale'; // Définir la valeur par défaut
 
-async function fetchNews(subreddit, elementId) {
-    try {
-        const response = await fetch(`${API_URL}${subreddit}`);
-        const data = await response.json();
-        const posts = data.data.children;
+    const apiUrl = `https://www.reddit.com/r/${subreddit}.json`; // URL de l'API Reddit
+    const actualitesSection = document.getElementById('actualites');
 
-        const container = document.getElementById(elementId);
-        container.innerHTML = '';
-
-        posts.forEach(post => {
-            const title = post.data.title;
-            const url = `https://reddit.com${post.data.permalink}`;
-            const score = post.data.score;
-
-            container.innerHTML += `
-                <article>
-                    <h3><a href="${url}" target="_blank">${title}</a></h3>
-                    <p>Score: ${score}</p>
-                </article>
-            `;
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const posts = data.data.children;
+            posts.forEach(post => {
+                const article = document.createElement('article');
+                article.innerHTML = `
+                    <img src="${post.data.thumbnail}" alt="${post.data.title}" onerror="this.style.display='none'">
+                    <div>
+                        <h2><a href="${post.data.url}" target="_blank">${post.data.title}</a></h2>
+                        <p>Score: ${post.data.score}</p>
+                        <p>Date de publication: ${new Date(post.data.created_utc * 1000).toLocaleDateString()}</p>
+                    </div>
+                `;
+                actualitesSection.appendChild(article);
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération des actualités:', error);
+            actualitesSection.innerHTML = '<p>Impossible de charger les actualités. Veuillez réessayer plus tard.</p>';
         });
-    } catch (error) {
-        console.error('Error fetching news:', error);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    fetchNews(SUBREDDITS.clashRoyale, 'clash-royale-news');
-    fetchNews(SUBREDDITS.roblox, 'roblox-news');
-    fetchNews(SUBREDDITS.fortnite, 'fortnite-news');
 });
